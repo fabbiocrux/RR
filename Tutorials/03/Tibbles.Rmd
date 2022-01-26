@@ -63,7 +63,7 @@ Cliquez sur le bouton "Suivant" pour commencer.
 
 Maintenant que vous en savez un peu sur le jeu de données, examinons son contenu. Si vous exécutez `prenoms` sur votre console R, vous obtiendrez une sortie qui ressemble à ceci :
 
-## Data Science avec les Prenoms `r fa(name = "chalkboard-teacher", fill = "darkorange")`
+## Data Science avec les Prenoms
 
 ### La popularité d'un prénom au cours du temps
 
@@ -127,25 +127,16 @@ select(prenoms, -year, -prop)
 
 Le tableau ci-dessous résume les autres outils de `select()` disponibles dans {dplyr}. Étudiez-le, puis cliquez sur "Continue" pour tester votre compréhension.
 
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 | Outil             | Utilisation                                                                    | Exemple                                     |
-+===================+================================================================================+=============================================+
+|-------------------|--------------------------------------------------------------------------------|---------------------------------------------|
 | **-**             | Exclusion de colonnes                                                          | `select(prenoms, -sex)`                     |
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 | **:**             | Sélection des colonnes entre 2 colonnes spécifiques (inclusive)                | `select(prenoms, year:n)`                   |
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 | **contains()**    | Sélection des colonnes qui contiennent une chaîne de caractère spécifique      | `select(prenoms, contains("n"))`            |
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 | **ends_with()**   | Sélection des colonnes qui se terminent par une chaîne de caractère spécifique | `select(prenoms, ends_with("n"))`           |
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 | **matches()**     | Sélection des colonnes qui correspondent à une expression réguliere            | `select(prenoms, matches("n"))`             |
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 | **num_range()**   | Sélection des colonnes avec un suffixe numérique dans l'étendue demandée       | Pas applicable à `prenoms`                  |
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 | **one_of()**      | Sélection des colonnes dont le nom apparaît dans l'ensemble demandé            | `select(prenoms, one_of(c("sex", "name")))` |
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 | **starts_with()** | Sélection des colonnes qui commencent par une chaîne de caractère spécifique   | `select(prenoms, starts_with("n"))`         |
-+-------------------+--------------------------------------------------------------------------------+---------------------------------------------+
 
 ## filter()
 
@@ -211,7 +202,7 @@ Lorsque vous utilisez des tests logiques, veillez à rechercher ces deux erreurs
 1.  utiliser `=` au lieu de `==` pour tester l'égalité
 2.  oublier d'utiliser des guillemets lors de la comparaison de chaînes, par ex. `name == Marie`, au lieu de`name == "Marie"`.
 
-### Combinaison de tests 
+### Combinaison de tests
 
 Si vous fournissez plus d'un test à `filter()`, `filter()` combinera les tests avec une instruction **et** (`&`) : il ne renverra que les lignes qui satisfont tous les tests.
 
@@ -225,23 +216,15 @@ filter(prenoms, name == "Julie" | name == "Antoinette")
 
 Vous pouvez trouver une liste complète des opérateurs booléens de base de R dans le tableau ci-dessous.
 
-+-------------------+-----------------------------------------------------------------------------+---------------------+
 | Opérateur booléen | Signification                                                               | Exemple             |
-+===================+=============================================================================+=====================+
+|-------------------|-----------------------------------------------------------------------------|---------------------|
 | **&**             | Est-ce que les conditions`A` et `B` sont *toutes les deux* vraies ?         | `A & B`             |
-+-------------------+-----------------------------------------------------------------------------+---------------------+
 | `|`               | Est-ce que l' *une ou les deux* conditions `A` et `B` sont vraies ?         | `A | B`             |
-+-------------------+-----------------------------------------------------------------------------+---------------------+
 | **!**             | Est-ce que `A` *n'est pas* vraie ?                                          | `!A`                |
-+-------------------+-----------------------------------------------------------------------------+---------------------+
 | **xor()**         | Est-ce que l' *une et uniquement une* des conditions `A` et `B` est vraie ? | `xor(A, B)`         |
-+-------------------+-----------------------------------------------------------------------------+---------------------+
 | **%in%**          | Est-ce que `x` est dans l'ensemble `a`, `b`, et `c` ?                       | `x %in% c(a, b, c)` |
-+-------------------+-----------------------------------------------------------------------------+---------------------+
 | **any()**         | Est-ce que *l'une* des conditions `A`, `B`, ou `C` est vraie ?              | `any(A, B, C)`      |
-+-------------------+-----------------------------------------------------------------------------+---------------------+
 | **all()**         | Est-ce que *toutes* les conditions `A`, `B`, ou `C` sont vraies ?           | `all(A, B, C)`      |
-+-------------------+-----------------------------------------------------------------------------+---------------------+
 
 ### Exercice - Combinaison de tests
 
@@ -281,7 +264,7 @@ filter(prenoms, n == 5 | n == 6 | n == 7 | n == 8 | n == 9)
 filter(prenoms, n %in% c(5, 6, 7, 8, 9))
 ```
 
-### Deux erreurs courantes supplémentaires - Récapitulatif 
+### Deux erreurs courantes supplémentaires - Récapitulatif
 
 Lorsque vous combinez plusieurs tests logiques, veillez à rechercher ces deux erreurs courantes :
 
@@ -334,7 +317,7 @@ arrange(prenoms, year, desc(prop))
 
 Vous pensez avoir compris ?
 
-### Quiz arrange() 
+### Quiz arrange()
 
 Quel prénom était le plus populaire pour un seul sexe en une seule année ? Dans le bloc de code ci-dessous, utilisez `arrange()` pour faire apparaître la ligne avec la plus grande valeur de `prop` en haut du jeu de données.
 
@@ -382,7 +365,7 @@ Si on veut sélectionner les 5 premières lignes :
 slice(prenoms, 1:5)
 ```
 
-## Pipe `%>%` 
+## Pipe `%>%`
 
 ### Étapes
 
@@ -471,7 +454,7 @@ Notez que le premier argument de `ggplot()` est un jeu de données. Cela signifi
 #     labs(title = "Popularité du prénom Louis")
 ```
 
-### Récapitulatif 
+### Récapitulatif
 
 Ensemble, `select()`, `filter()` et `arrange()` vous permettent de trouver rapidement les informations disponibles dans vos données.
 
