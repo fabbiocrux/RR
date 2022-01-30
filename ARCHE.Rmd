@@ -66,10 +66,6 @@ b_int <- 30
 ```
 
 
-```{r Ex_2-solution}
-a_int <- 20L
-b_int <- 30L
-```
 
 
 ```{r Ex_3}
@@ -79,8 +75,7 @@ b_int <- 30L
 
 
 ```{r Ex_3-solution}
-a_log <- TRUE
-b_log <- FALSE
+
 ```
 
 
@@ -107,17 +102,9 @@ La fonction `c()` ('*combination fonction*') permet de creer de vecteur:
 ```
 
 
-- Determinez:
-  - Age moyenne des des étudiants dans la variable `moyenne_global`.
-  - Longueur du vecteur étudiants. (voir `?length`)
 
 
 ```{r Ex_6}
-etudiants <- c("Maelle", "Luca", "Sandrine", "Marcelo", "Jean")
-taille  <-  c(188, 173, 187, 164, 178)
-age <- c(32, 23, 35, 35, 54)
-
-
 # moyenne_global <- ....
 
 # total_etu <- ...
@@ -129,27 +116,6 @@ age <- c(32, 23, 35, 35, 54)
 
   
 
-### List
-
-- Faites une liste avec les vecteurs que vous avez fait dans l'exercise précedente
-
-```{r Ex_7}
-#list(__________)
-```
-
-
-```{r Ex_7-solution}
-# Creation d'une List
-v1 <- c("Maelle", "Luca", "Sandrine", "Marcelo", "Jean")
-v2  <-  c(188, 173, 187, 164, 178)
-v3 <- c(32, 23, 35, 35, 54)
-
-a_list <- list(etudiant = v1,
-               taille = v2,
-               age = v3 )
-a_list
-
-```
 
 ### Data frames
 

@@ -16,50 +16,9 @@ output:
 knitr::opts_chunk$set(echo = TRUE, eval=TRUE)
 ```
 
-# Prise en Main
-
-## Comme une calculatrice:
-
-- Vous voyez l’opérateur d’assignation `<-` :
-
-```{r, eval=TRUE, echo=TRUE}
-a <- 2+2
-b <- 5-7
-c <- 4*12
-d <- 10/3
-e <- 5^2
-Resultat <- a + b + c +d +e
-
-Text <- "Hello students, the result is "
-```
-
-Rmarkdown permet combiner text et code: `r Text`  `r Resultat`
-
-
-```{r, include=FALSE}
-a
-b
-c
-d
-e
-Text
-```
 
 
 
-
-```{block, type='infobox'}
-- Les noms d'objets peuvent contenir des lettres, des chiffres, les symboles `.` et `_`. 
-
-- Ils ne peuvent pas commencer par un chiffre. 
-
-- R fait la différence entre minuscules et majuscules dans les noms d'objets, ce qui signifie que `x` et `X` seront deux objets différents, tout comme `resultat` et `Resultat`. 
-
-Conseils:
-
-- Il est préférable d'éviter les majuscules (pour les risques d'erreur) et les caractères accentués (pour des questions d'encodage) dans les noms d'objets. 
-
-- De même, il faut essayer de trouver un équilibre entre clarté du nom (comprendre à quoi sert l'objet, ce qu'il contient) et sa longueur. Par exemple, on préfèrera comme nom d'objet `taille_conj1` à `taille_du_conjoint_numero_1` (trop long) ou à `t1` (pas assez explicite).
 ```
 
 
@@ -175,12 +134,6 @@ Exemple: Si on veut connaître le nombre d'éléments du vecteur `tailles` que n
 
 
 ```{r}
-length(tailles)
-min(tailles)
-max(tailles)
-sum(tailles)
-mean(tailles)
-range(tailles)
 
 # Voir l'aide des fonctions
 ?length

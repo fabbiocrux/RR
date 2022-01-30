@@ -1,0 +1,296 @@
+##========================================================##
+##                                                        ##
+##   Network Visualization with R                         ##
+##   Reproducible Research ENSGSi, France                 ##
+##                                                        ##
+##   Fabio CRUZ                                           ##
+##   Web: kateto.net | Email: katya@ognyanova.net         ##
+##   GitHub: kateto  | Twitter: @Ognyanova                ##
+##                                                        ##
+##========================================================##
+
+
+
+# ================ Purpose of the analysis ================
+
+# Create a reproductible Script that enables the analysis of the AttrakDiff Methodology
+
+
+# CONTENTS
+#   1. Reading the Excel Data
+#   2. Treating Excel Data
+#   3. Making the Graphic I by Groups
+#   4. Plotting two-mode networks
+
+
+# KEY PACKAGES
+## Install those now if you do not have the latest versions. ----
+#install.packages("tidyverse")  # Tidyverse approach for Data science
+#install.packages("readxl")
+
+
+## Load the packages ----
+library(tidyverse)
+library(readxl)  # Read a Excel File
+library(here)
+
+
+#  1. Reading the Excel Data ----
+
+# Identify the onglets
+onglets <- excel_sheets("data/Attrakdiff.xlsx")
+
+# Reading all table
+data <- read_excel(path = "data/Attrakdiff.xlsx" )
+
+# Reading all table but considering as title the second row
+data <- read_excel(path = "data/Attrakdiff.xlsx" , skip = 1)
+
+# Obtaining the names of the columns
+names(data)
+
+# Eventually changing a name of the column
+col_names <- names(data)
+col_names[1] <- c("Participant")
+names(data) <- col_names
+names(data)
+
+
+#  2. Treating Excel Data ----
+
+# Pivot_longer() to arrange each
+data <-
+  data %>% pivot_longer(cols = -Participant,
+                              names_to = "Variables",
+                              values_to = "Answers")
+
+
+# Changing the scale of the answers
+data <-
+  data %>% mutate(
+    change_scale =
+      case_when(
+        Answers == 7  ~ 3,
+        Answers == 6  ~ 2,
+        Answers == 5  ~ 1,
+        Answers == 4  ~ 0,
+        Answers == 3  ~ -1,
+        Answers == 2  ~ -2,
+        Answers == 1  ~ -3,
+        TRUE ~ as.numeric(Answers)
+      )
+  )
+
+View(data)
+# Changing the sign of the answers : Approach Explicit
+data <-
+  data %>% mutate(
+    change_scale_orientation =
+      case_when(
+        Variables %in%
+          c("ATT1*", "ATT3*","ATT5*",
+            "ATT7*", "QHI2*", "QHI3*", "QHI6*",
+            "QHS1*", "QHS3*", "QHS4*", "QP1*",
+            "QP2*", "QP3*", "QP5*")  ~ as.numeric(change_scale)*(-1),
+        TRUE ~ as.numeric(change_scale)
+      )
+  )
+
+View(data)
+
+# Changing the sign of the answers : Approach by Character
+data <-
+  data %>% mutate(
+    change_scale_orientation_II =
+      case_when(
+        str_detect(Variables, "\\*") ~ as.numeric(change_scale)*(-1),
+        TRUE ~ as.numeric(change_scale)
+      ))
+
+# Doing the Groups of the Dimmensions
+data <-
+  data %>% mutate(
+    Factors =
+      case_when(
+        str_detect(Variables, "QP") ~ "QP",
+        str_detect(Variables, "QP1") ~ "QP",
+        str_detect(Variables, "QHS") ~ "QHS",
+        str_detect(Variables, "QHI") ~ "QHI",
+        str_detect(Variables, "QH1") ~ "QHI",
+        str_detect(Variables, "ATT") ~ "ATT",
+        TRUE ~ "ATTENTION"
+      ))
+
+
+
+
+
+#  3. Making the Graphic I by Groups ----
+
+graph_1 <-
+  data %>%
+  group_by(Factors) %>%
+  summarise(Moyenne = mean(change_scale_orientation),
+            Std = sd(change_scale_orientation),
+            se = Std / sqrt(length(change_scale_orientation))
+  )
+
+# More Info: # https://www.r-graph-gallery.com/4-barplot-with-error-bar.html
+
+graph_1 %>%
+  ggplot() +
+  aes(x= Factors, y=Moyenne , fill = Factors ) +
+  geom_bar(stat = "identity") +
+  geom_errorbar( aes(x=Factors, ymin=Moyenne-se,
+                     ymax=Moyenne+se),
+                 width=0.1, colour="orange", alpha=0.9, size=0.5) +
+  geom_point() +
+  coord_flip() +
+  scale_x_discrete(breaks=c("ATT","QHI","QHS","QP"),
+                   labels=c("Attractivité Globale",
+                            "Qualité hédonique - Identification",
+                            "Qualité hédonique - Stimulation",
+                            "Qualité Pragmatique")) +
+  scale_y_continuous(limits = c(-3,3)) +
+  labs(x = "",
+       y = "Level ",
+       title = "AtracDiff Profile for XXX",
+       subtitle = paste("Total of answers:" , max(data$Participant))
+       )+
+  theme_minimal(base_size = 12, base_family = "Palatino")
+
+
+# Saving the File
+ggsave("Results/Graph-1.jpg", width = 5, height = 8, dpi="print" )
+
+
+#  4. Graphic 2 ----
+
+# Reading only first row for the titles
+titles <- read_excel(path = "data/Attrakdiff.xlsx") %>% slice(1)
+#View(titles)
+
+# We need to change into long format to be able to work with the titles
+titles <-
+  titles %>% select(-1) %>%
+  pivot_longer(cols = everything(), names_to = "Label Incorrect", values_to = "Variables") %>%
+  separate(col = "Label Incorrect", into = c("Left", "Right"), sep = "-")
+
+
+#titles$Left <- gsub(" ", "", titles$Left)
+#titles$Right <- gsub(" ", "", titles$Left)
+
+
+# Changing the Label to the correct format
+titles <-
+  titles %>%
+  mutate(
+    Correct_label =
+      case_when(
+        str_detect(Variables, "\\*") ~ paste(Right, Left, sep = " - "),
+        TRUE ~ paste(Left, Right,  sep = " - ")
+      ))
+
+
+# Joinning the Data with the correct Titles
+data <-
+  data %>%
+  left_join(titles %>% select(Variables, Correct_label),
+            by = "Variables")
+
+# Calculating the mean value by each Variables
+TableII <-
+  data %>%
+  group_by(Variables) %>%
+  summarise(Media = mean(change_scale_orientation))
+
+
+# Selecting only the data that I have interests
+Graphic_2 <-
+  TableII %>%
+  left_join( data %>% select(Variables, Factors, Correct_label) %>% unique(),
+             by = "Variables"
+             ) %>%
+  select(Factors, Variables, Media, Correct_label) %>%
+  arrange(Factors, Variables)
+#mutate(label = factor(label, labels = test$label ))  # ordering factors
+
+
+# Making the Graphic
+Graphic_2 %>%
+  ggplot(aes(x= Correct_label, y= Media, color = Factors , group=1 )) + #
+  #geom_point() +
+  geom_line() +
+  geom_point() +
+  ggplot2::annotate("rect", xmin=c(1,8,15,22), xmax=c(7,14,21,28),
+                    ymin=rep(-3,4), ymax=rep(3, 4),
+                    alpha = .1 , fill = c("blue", "red", "grey","green")) +
+  coord_flip(xlim = NULL, ylim = c(-3,5)) +
+  scale_y_continuous(breaks=c(-3:4),
+                     labels=c(-3:3, " ")) +
+  ggplot2::annotate("text",
+                    y = c(2, 2, 2, 2),
+                    x = c(4, 11, 19, 26),
+                    label = c("Attractivité \n globale",
+                              "Qualité \n hédonique - identification",
+                              "Qualité \n hédonique - stimulation",
+                              "Qualité \n pragmatique"),
+                    family = "Palatino", fontface = 3, size=3) +
+  theme_minimal(base_size = 10, base_family = "Palatino") +
+  labs(x = "",
+       y = "Level ",
+       title = "AtrakDiff Profile",
+       subtitle = paste("Total of answers:" , max(data$Participant) ) ) +
+  theme(
+    legend.position = "right",
+    panel.border = element_blank(),
+    panel.spacing = unit(0.1, "lines"),
+    strip.text.x = element_text(size = 18, family = "Palatino")
+  )
+
+# Order Factors
+# as.factor(test$label) %>% levels(test$label)
+Graphic_2$Correct_label <- factor(Graphic_2$Correct_label, levels = Graphic_2$Correct_label)
+
+
+
+
+# Final Graphic
+
+
+QH <-
+  data %>%
+  filter(Factors == "QHI" | Factors == "QHS") %>%
+  summarise(QH = mean(change_scale_orientation),
+            QH_sd = t.test(change_scale_orientation)
+            )
+t.test(QH$change_scale_orientation)
+
+QP <-
+  data %>%
+  filter(Factors == "QP") %>%
+  summarise(QP = mean(change_scale_orientation))
+
+
+Graphic_3 <- tibble(QH, QP )
+Graphic_3 %>%
+  ggplot() +
+  aes(x=QP, y=QH) +
+  geom_point()+
+  ylim(-3,3)+ xlim(-3,3) +
+  theme_minimal(base_size = 10, base_family = "Palatino") +
+  geom_hline(yintercept=c(-1,1))+
+  geom_vline(xintercept=c(-1,1)) +
+  ggplot2::annotate("rect", xmin=c(-1), xmax=c(1),
+                    ymin=c(-1), ymax=c(1),
+                    alpha = .1 , fill = c("blue")) +
+  ggplot2::annotate("text",
+                    y = c(0.5),
+                    x = c(0),
+                    label = c("Neutre"),
+                    family = "Palatino", fontface = 3, size=4)
+
+
+
+as.factor(data$Factors) %>% levels()
+
