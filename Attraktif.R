@@ -57,7 +57,6 @@ names(data)
 
 
 #  2. Treating Excel Data ----
-
 # Pivot_longer() to arrange each
 data <-
   data %>% pivot_longer(cols = -Participant,
@@ -82,10 +81,11 @@ data <-
   )
 
 View(data)
+
 # Changing the sign of the answers : Approach Explicit
 data <-
   data %>% mutate(
-    change_scale_orientation =
+    final_answer =
       case_when(
         Variables %in%
           c("ATT1*", "ATT3*","ATT5*",
@@ -101,7 +101,7 @@ View(data)
 # Changing the sign of the answers : Approach by Character
 data <-
   data %>% mutate(
-    change_scale_orientation_II =
+    final_answer_II =
       case_when(
         str_detect(Variables, "\\*") ~ as.numeric(change_scale)*(-1),
         TRUE ~ as.numeric(change_scale)
@@ -122,22 +122,20 @@ data <-
       ))
 
 
-
-
-
 #  3. Making the Graphic I by Groups ----
 
-graph_1 <-
+Table_I <-
   data %>%
   group_by(Factors) %>%
-  summarise(Moyenne = mean(change_scale_orientation),
-            Std = sd(change_scale_orientation),
-            se = Std / sqrt(length(change_scale_orientation))
+  summarise(Moyenne = mean(final_answer),
+            Std = sd(final_answer),
+            se = Std / sqrt(length(final_answer))
   )
 
 # More Info: # https://www.r-graph-gallery.com/4-barplot-with-error-bar.html
 
-graph_1 %>%
+Graph_I <-
+  Table_I %>%
   ggplot() +
   aes(x= Factors, y=Moyenne , fill = Factors ) +
   geom_bar(stat = "identity") +
@@ -158,6 +156,7 @@ graph_1 %>%
        subtitle = paste("Total of answers:" , max(data$Participant))
        )+
   theme_minimal(base_size = 12, base_family = "Palatino")
+
 
 
 # Saving the File
@@ -199,15 +198,15 @@ data <-
             by = "Variables")
 
 # Calculating the mean value by each Variables
-TableII <-
+Table_II <-
   data %>%
   group_by(Variables) %>%
-  summarise(Media = mean(change_scale_orientation))
+  summarise(Media = mean(final_answer))
 
 
 # Selecting only the data that I have interests
-Graphic_2 <-
-  TableII %>%
+Graph_II <-
+  Table_II %>%
   left_join( data %>% select(Variables, Factors, Correct_label) %>% unique(),
              by = "Variables"
              ) %>%
@@ -217,7 +216,8 @@ Graphic_2 <-
 
 
 # Making the Graphic
-Graphic_2 %>%
+Graph_II <-
+  Graph_II %>%
   ggplot(aes(x= Correct_label, y= Media, color = Factors , group=1 )) + #
   #geom_point() +
   geom_line() +
@@ -250,47 +250,65 @@ Graphic_2 %>%
 
 # Order Factors
 # as.factor(test$label) %>% levels(test$label)
-Graphic_2$Correct_label <- factor(Graphic_2$Correct_label, levels = Graphic_2$Correct_label)
+Graph_II$Correct_label <- factor(Graph_II$Correct_label, levels = Graph_II$Correct_label)
 
 
 
 
 # Final Graphic
 
-
 QH <-
   data %>%
   filter(Factors == "QHI" | Factors == "QHS") %>%
-  summarise(QH = mean(change_scale_orientation),
-            QH_sd = t.test(change_scale_orientation)
+  summarise(QH = mean(final_answer),
+            QH_sd = sd(final_answer),
+            QH_IC_min = t.test(final_answer)$conf.int[1], # see https://larmarange.github.io/analyse-R/intervalles-de-confiance.html
+            QH_IC_max = t.test(final_answer)$conf.int[2]
             )
-t.test(QH$change_scale_orientation)
+
 
 QP <-
   data %>%
   filter(Factors == "QP") %>%
-  summarise(QP = mean(change_scale_orientation))
+  summarise(QP = mean(final_answer),
+            QP_sd = sd(final_answer),
+            QP_IC_min = t.test(final_answer)$conf.int[1], # see https://larmarange.github.io/analyse-R/intervalles-de-confiance.html
+            QP_IC_max = t.test(final_answer)$conf.int[2]
+            )
 
 
-Graphic_3 <- tibble(QH, QP )
-Graphic_3 %>%
+Table_III <- tibble(QH, QP )
+names(Table_III)
+
+
+
+Graph_III <-
+  Table_III%>%
   ggplot() +
   aes(x=QP, y=QH) +
   geom_point()+
   ylim(-3,3)+ xlim(-3,3) +
-  theme_minimal(base_size = 10, base_family = "Palatino") +
   geom_hline(yintercept=c(-1,1))+
   geom_vline(xintercept=c(-1,1)) +
+  annotate("rect", xmin = Table_III$QP_IC_min, xmax = Table_III$QP_IC_max,
+           ymin = Table_III$QH_IC_min, ymax = Table_III$QH_IC_max,
+           alpha = .5 , fill = c("blue")) +
   ggplot2::annotate("rect", xmin=c(-1), xmax=c(1),
                     ymin=c(-1), ymax=c(1),
-                    alpha = .1 , fill = c("blue")) +
+                    alpha = .1 , fill = c("#009999")) +
   ggplot2::annotate("text",
                     y = c(0.5),
                     x = c(0),
                     label = c("Neutre"),
-                    family = "Palatino", fontface = 3, size=4)
+                    family = "Palatino", fontface = 3, size=4) +
+  labs(title = "Global AttrakDiff ",
+       subtitle = paste("Total of answers:" , max(data$Participant)),
+       x = "Qualité Pragmatique",
+       y = "Qualité Hedonique ") +
+  theme_minimal(base_size = 10, base_family = "Palatino")
 
 
 
-as.factor(data$Factors) %>% levels()
 
+Results <- list(t1 = Table_I, t2 = Table_II, t3= Table_III,
+                Fig_1= Graph_I, Fig_2 = Graph_II, Fig_3 = Graph_III)

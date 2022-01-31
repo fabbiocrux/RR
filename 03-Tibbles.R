@@ -125,7 +125,7 @@ prenoms %>%
   slice(1)
 
 
-# Exercise: Plotting your Name
+# Exercise: Plotting your Name throu
 prenoms %>%
   filter(name == "Fabio", sex == "M") %>%
   ggplot() +

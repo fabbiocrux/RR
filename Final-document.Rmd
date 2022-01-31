@@ -1,0 +1,24 @@
+---
+title: "Untitled"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+source('Attraktif.R')
+
+```
+
+## Introduccnoin
+
+
+
+
+## MEthos
+
+
+```{r, out.width='100%'}
+Results$Fig_1
+```
+
