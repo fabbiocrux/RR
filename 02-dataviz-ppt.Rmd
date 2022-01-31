@@ -311,9 +311,20 @@ background-position: 50% 50%
 
 1. data,
 
-1. aesthetic mapping
+1. aesthetic mapping `aes()`
 
-1. at least one layer of geom function
+1. at least one layer of geom function `geom_XX()`
+
+
+**Basic structure for graphics**
+
+```{r, echo=TRUE, eval=FALSE}
+ggplot(data = <DATA>) + 
+  aes(x = <X>, y = <Y>) + 
+   <GEOM_FUNCTION>() 
+```
+
+
 
 ---
 
@@ -890,12 +901,5 @@ ggplot(data = penguins,
 class: center middle hide-count
 
 #  `r emo::ji("woman_raising_hand_medium_skin_tone")``r emo::ji("man_raising_hand")`<br>.big-text[Q&A]
-
----
-
-class: center, middle, inverse
-
-# Dynamic Wrangling<br>Using dplyr
-### .orange[Next Module - 4]
 
 ---
