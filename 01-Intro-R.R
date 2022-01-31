@@ -2,8 +2,7 @@
 
 # Create a reproductible Script that enables the analysis of the AttrakDiff Methodology
 
-
-# ATOMS: Fonctions & Objets -----
+# Fonctions & Objets -----
 
 # 1. Clasess:
 #   - Numerical, Character, Integer or Logical
