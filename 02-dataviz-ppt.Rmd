@@ -193,6 +193,8 @@ background-position: 95% 5%
 
 .footnote[
 [Artwork Source](https://www.allisonhorst.com/)
+
+[Package](https://allisonhorst.github.io/palmerpenguins/)
 ]
 
 
