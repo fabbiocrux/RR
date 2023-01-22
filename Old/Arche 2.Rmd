@@ -1,0 +1,237 @@
+---
+title: "Rendu ARCHE"
+author: "Name of the Student"
+output: pdf_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, include= TRUE)
+library(tidyverse)
+library(babynames)
+```
+
+
+# Prise en main
+
+1) Régardez la video : [https://rstudio.cloud/learn/primers/1.2](https://rstudio.cloud/learn/primers/1.2). Timming 20 Min.
+
+
+## Questions théoriques: 
+
+* Comment créer un vector sous R? 
+
+> Votre réponse ici
+
+```{r vector, echo=TRUE}
+# Mets ici un example
+
+```
+
+- Quelle est la fonction des crochets `[]`?
+> Ecrire votre réponse ici
+
+
+## Exercice Pratique 1
+
+On a demandé à 4 ménages le revenu des deux conjoints, et le nombre de personnes du ménage :
+
+```{r eval=FALSE, echo=TRUE}
+conjoint_1 <- c(1200, 1180, 1750, 2100, 1840)
+conjoint_2 <- c(1450, 1870, 1690, 0, 2500)
+nb_personnes <- c(4, 2, 3, 2, 5)
+```
+
+  1. Calculer le revenu total de chaque ménage, puis diviser par le nombre de personnes pour obtenir le revenu par personne de chaque ménage.
+  2. - Calculer le revenu minimum et maximum parmi ceux du premier `conjoint_1`. 
+  3. Calculer le revenu minimum et maximum, mais l'un des enquetés n'a pas voulu répondre :
+
+```{r eval=FALSE}
+conjoint_1 <- c(1200, 1180, 1750, NA, 1840)
+```
+
+
+## Exercice Pratique 2
+
+On a relevé les notes en maths, anglais et sport d'une classe de 6 élèves et on a stocké ces données dans trois vecteurs :
+
+```{r}
+maths <- c(12, 16, 8, 18, 6, 10)
+anglais <- c(14, 9, 13, 15, 17, 11)
+sport <- c(18, 11, 14, 10, 8, 12)
+```
+
+  - Calculer la moyenne des élèves de la classe en anglais.
+  - Calculer la moyenne générale de chaque élève.
+  - Essayez de comprendre le résultat des deux fonctions suivantes (vous pouvez vous aider de la page d'aide de ces fonctions) :
+
+```{r}
+pmin(maths, anglais, sport)
+```
+
+```{r}
+pmax(maths, anglais, sport)
+```
+
+
+
+# Introduction au Tableau de Données
+
+Régardez les tutoriels : 
+
+1. [https://rstudio.cloud/learn/primers/2.3](https://rstudio.cloud/learn/primers/2.2). Timming 20 Min.
+
+2. [https://rstudio.cloud/learn/primers/2.3](https://rstudio.cloud/learn/primers/2.3)
+
+
+
+## Questions théoriques
+
+1. Qu’est-ce qu’un `tibble` par rapport au format `data.frame` et quel est la principale avantage de ce format ?
+
+> # Votre réponse
+
+2.  Expliquez a quoi servent les fonctions suivantes (avec vos mots):
+ 
+* `select()` and `filter()`: ____
+* `arrange()`: ___
+* `%>%`: ____
+* `mutate()`, `group_by()`, and `summarise()`: ____
+
+
+3. Quels sont les `helpers` de la fonction `select()`?
+
+> Votre réponse
+
+
+4. Expliquez à quoi ça sert l'operateur `>=`?
+
+> Votre réponse
+
+
+5. Quels sont les quatre erreurs les plus courants avec la fonction `filter`?
+
+> Votre réponse
+
+
+6. Expliquez l'erreur dans le code `filter(babynames, 10 < n < 20)`?
+
+> Votre réponse
+
+Si je veux filtrer faire, comment il faut le faire?
+
+```{r}
+# babynames %>% filter( _______ )
+```
+
+7. Expliquez l'interet de l'opérateur **Pipe** `%>%`?
+
+> Votre réponse
+
+```{r}
+# Un exemple
+```
+
+
+## Exercice Pratique 1
+
+
+Vous avez ces donnes:
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# Lire les donnes
+mydata <-  read_csv2("data/taille.csv")
+```
+
+Calculez:
+
+- Donner le nombre total de réponse par sexe.
+- Calculez la taille max, min et moyen par sexe.
+- Filtrez les individus avec un Doctorat.
+- Ajouter une nouvelle variable avec la notation "Good" pour `grade` A et "Neutral" `grade` B et "Bad" pour le `grade` C.
+
+
+# Introduction à la visualisation des données avec ggplot2
+
+
+Régardez le tutoriel: 
+
+1. [https://rstudio.cloud/learn/primers/1.1](https://rstudio.cloud/learn/primers/1.1). Timming 20 Min.
+
+
+
+- Quels sont les composants qu'un grapique a besoin en `ggplot`?
+
+>  1. Votre réponse
+>  2. Votre réponse
+>  3. Votre réponse
+
+- Qu'est ce que c'est un `geom_` en `ggplot` ?
+
+> Votre réponse
+
+
+- Faites un nuage de points entre les données `cty` vs `hwy`  du jeu de données `mpg`?
+
+```{r}
+# modifiez le code ci-dessous pour réaliser le nuage de points
+# ggplot(data = <DATA>) + 
+#   aes(x = <X>, y = <Y>)
+#  <GEOM_FUNCTION>()
+```
+
+
+- Dans le jeu de donnés `mpg`, graphiquez un nuage de points `cty` vs `hwy`, en prenant le facteur `drv` comme un variable de differentiation par la couleur.
+
+```{r}
+#ggplot(data = mpg) + 
+#  aes(x = ___, y = ____, __ = ____ ) +
+#  geom_point()
+```
+
+
+- Dans le jeu de donnés `babynames`, Grafiquez la popularité de prenom `James` et `Emma`.
+
+```{r}
+#babynames %>% ..
+```
+
+
+- Peut-on grafiquer la curve de total des persones differencié par sex depuis 1980?
+```{r}
+# Code ici
+```
+
+
+# Challenge Gapminder
+
+
+- Inspiré par [Hans Rosling](https://www.youtube.com/watch?v=jbkSRLYSojo)
+
+
+```{r data}
+# Code pour Lire la base de donnes 'Gapminder'
+gapminder <- read_csv2("data/gapminder.csv")
+
+#table 
+gapminder
+
+```
+
+Choissisez au moins **Deux** excercises ci-dessous en presentant un tableau ou bien un graphique 
+
+  * `dplyr` devrait être votre principal outil de manipulation des données
+  * `ggplot2` doit être votre principal outil de visualisation
+
+## Tasks menu {-}
+
+* Grafiquez l'espérance de vie moyenne sur l'ensemble des années pour la France ?
+
+
+* Obtenir le maximum et le minimum du PIB par habitant pour tous les continents. (Fait un tableu)
+
+
+* Comment l'espérance de vie varie-t-elle entre les différents continents ? (En utilisant boxplot de `ggplot`)
+
+* Proposez une analyse! 
