@@ -14,9 +14,6 @@ library(ggplot2) # Package for professional graphics
 library(readxl)  # Package for read Excel documents
 
 # Loading the data
-literature <- read_tsv(here("data/web-of-sciences.txt"))
-
-
 data <- mpg # data that present in the ggplot package
 str(data)
 
@@ -27,26 +24,14 @@ str(data)
 #  <GEOM_FUNCTION>()
 
 
-# Graphic Scatterplot (Nuage de Points) Complete
-ggplot(data = mpg) +
-  aes(x = displ, y = hwy) +
-  geom_point(color = "blue") +
-  labs(title="Gasoline Consumption in function of engine displacement",
-      subtitle="Data source from mpg in ggplot package",
-       y="Highway miles per gallon (Mile / US gal)",
-       x="Engine displacement (litres)",
-       ) +
-  geom_smooth(method = lm, formula = y ~ x, se = TRUE) +
-  stat_regline_equation(label.x = 5) + #using library(ggpubr) +
-  stat_cor( aes( label = ..rr.label..) , label.x = 5, label.y = 40) + # Add P-values to a
-  theme_minimal( base_family = "Palatino")
-
-
 # Grafique de boxplot
 ggplot(data = mpg) +
   aes(x = manufacturer, y = hwy)  +
   geom_boxplot() +
-  coord_flip()
+  coord_flip() +
+  labs(
+    y = "highway miles per gallon"
+  )
 
 
 
@@ -138,6 +123,21 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   aes(x = displ, y = hwy) +
   geom_point(color = "blue", shape = 3, alpha = 0.5)
+
+
+# Graphic Scatterplot (Nuage de Points) Complete
+ggplot(data = mpg) +
+  aes(x = displ, y = hwy) +
+  geom_point(color = "blue") +
+  labs(title="Gasoline Consumption in function of engine displacement",
+       subtitle="Data source from mpg in ggplot package",
+       y="Highway miles per gallon (Mile / US gal)",
+       x="Engine displacement (litres)",
+  ) +
+  geom_smooth(method = lm, formula = y ~ x, se = TRUE) +
+  stat_regline_equation(label.x = 5) + #using library(ggpubr) +
+  stat_cor( aes( label = ..rr.label..) , label.x = 5, label.y = 40) + # Add P-values to a
+  theme_minimal( base_family = "Palatino")
 
 
 

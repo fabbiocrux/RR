@@ -14,6 +14,7 @@ library(tidyverse)
 library(readxl)  # Package for read Excel documents
 
 # Load the Data.
+
 prenoms <- read_csv2(here("data/prenoms_france.csv")) # Coming from library(prenoms)
 str(prenoms)
 

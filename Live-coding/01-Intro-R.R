@@ -1,8 +1,9 @@
-# ================ Purpose of the analysis ================
+# ================ Introduction ================
 # Create a reproductible Script that enables the analysis of the AttrakDiff Methodology
 
 # Fonctions & Objets -----
 
+# 0. Interface and basic use
 # 1. Clasess:
 #   - Numerical, Character, Integer or Logical
 # 2. Objects
@@ -11,22 +12,14 @@
 #   - Subsetting, Logical subsetting
 
 
-
+## As Calculatrice
+1 + 2
 
 ## Variables and Assignation '<-' ----
-# Asignation symbol '<-' Shortcut (ALT + '-' )
-?"<-" # See the Help
 
-aleatoire = rnorm(100, mu = 100, sd = 50)
-aleatoire <-  rnorm(100, mu = 100, sd = 50)
-
-### Recommendation with the names of Variables:
-# Source: http://www2.stat.duke.edu/~rcs46/lectures_2015/01-markdown-git/slides/naming-slides/naming-slides.pdf
-
-# Principles:
-# - 1) Machine readable // Human readable // Plays well with default ordering
-
-# 1) Machine readable
+aleatoire = rnorm(100, mean = 100, sd = 50)
+hist(aleatoire)
+aleatoire <-  rnorm(100, mean = 1, sd = 50)
 
 Var_1 <- 2      # Names can contain Letters, Numbers and symbols `.` et `_`. without spaces
 2_Var <- 4      # Don't Start by a number
@@ -35,20 +28,6 @@ Var% <- 2       # Wrong
 
 a <- 1;  A <- 3 # case sensitivity
 a == A
-
-# 2) Human readable
-"taille_conj1" -> Good
-"taille_du_conjoint_numero_1" -> trop_long
-"t1" -> pas_assez_explicite
-
-# 3) Plays well with default ordering
-helper01_load-counts
-helper02_load-exp-des
-helper03_load-focus-statinf
-helper04_extract-and-tidy
-
-
-
 
 
 ## Numerical ----
@@ -139,7 +118,7 @@ taille  <-  c(188, 173, 187, 164, 178)
 age <- c(32, 23, 35, 35, 54)
 fumeur <- c(TRUE, FALSE, TRUE, FALSE, FALSE)
 
-table <- data.frame(ID, etudiants, taille, age, fumeur)
+table <- tibble(ID, etudiants, taille, age, fumeur)
 table$etudiants
 
 
@@ -172,25 +151,11 @@ mean(tailles)
 range(tailles)
 
 
-
-
 # Exercise
-#Determinez:
+# Determinez:
 # Age moyenne des des étudiants dans la variable `moyenne_global`.
-# Longueur du vecteur étudiants. (voir `?length`)
 
 
-
-
-# Explaining the notion of Packages ----
-# Show: https://cran.r-project.org/
-
-
-
-References
-1. https://swcarpentry.github.io/r-novice-gapminder-es/
-2. https://moderndive.com/index.html
-3. https://flor14.github.io/Fundamentos_de_R/
 
 
 
