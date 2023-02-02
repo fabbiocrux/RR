@@ -51,10 +51,10 @@ class: center, middle, inverse, title-slide
 
 1. [Data Visualisation using ggplot2](#module2)
 
-  - R as Calculator
-  - Functions
-  - Objects
-
+  - `ggplot()`
+  - `aes()`
+  - `geom_&lt;XY&gt;()`
+  
 1. [Data Wrangling using dplyr](#module4)
 
 ---
@@ -247,6 +247,12 @@ ggplot(data = &lt;DATA&gt;) +
 
 ---
 
+class: center, middle
+
+# Graph 1: `geom_bar()`
+
+---
+
 ###  Step 1:  Data
 
 .panelset[
@@ -411,8 +417,6 @@ ggplot(data = attrakdiff) +
 * geom_bar(fill = c("orange", "yellow"))
 
 # color names should be equal to the factor levels
-# in case of factor species levels are three
-# Adele, Chinstrap &amp; Gentoo
 ```
 
 ]
@@ -505,8 +509,6 @@ ggplot(data = attrakdiff) +
 ]
 ]
 
----
-
 
 ---
 
@@ -582,8 +584,6 @@ ggplot(data = attrakdiff) +
 
 ]
 ]
-
-
 
 
 ---
@@ -719,6 +719,49 @@ ggplot(data = attrakdiff) +
 
 ]
 ]
+
+---
+
+
+class: center, middle
+
+# Graph 2: `geom_histogram()`
+
+---
+
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none",
+        text = element_text(size = 20)) + 
+  labs( 
+    title = "Participants", 
+    subtitle = "per Sex and Ages",
+    x = "Sex", 
+    y = "Quantity" 
+  ) +
+  theme_classic() 
+
+*ggsave("fig2.jpg", width = 5, height = 5, dpi = "print")
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-21-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
 
 ---
 

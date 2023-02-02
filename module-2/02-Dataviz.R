@@ -25,27 +25,48 @@ str(data)
 
 
 # Grafique de bar
-ggplot(data = attrakdiff,aes(x = Sex)) +
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
   geom_bar() +
-
-
-
-  coord_flip() +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none",
+        text = element_text(size = 20)) +
   labs(
-    y = "highway miles per gallon"
-  )
+    title = "Participants",
+    subtitle = "per Sex and Ages",
+    x = "Sex",
+    y = "Quantity"
+  ) +
+  theme_classic()
+
+
+# geom_histograph
+ggplot(data = attrakdiff) +
+  aes(x = Var_1, y = Var_2) +
+  geom_point() +
+  geom_line()
+
+
+filter <-
+attrakdiff %>%
+  filter(Status == "Etudiant")%>%  #<<
+  kableExtra::kable()
 
 
 
-# Explanation of the element we can change
-ggplot() +
-  geom_point(aes(1, 1), size = 20) +
-  geom_point(aes(2, 1), size = 10) +
-  geom_point(aes(3, 1), size = 20, shape = 17) + # Playing with Size http://www.sthda.com/english/wiki/ggplot2-point-shapes
-  geom_point(aes(4, 1), size = 20, colour = "blue") +
-  scale_x_continuous(NULL, limits = c(0.5, 4.5), labels = NULL) +
-  scale_y_continuous(NULL, limits = c(0.9, 1.1), labels = NULL) +
-  theme(aspect.ratio = 1/3)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Playing with the Color
