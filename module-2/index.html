@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Module 2: Data Visualisation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Fabio A. Cruz" />
+    <meta name="date" content="2023-02-02" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/remark-css/default.css" rel="stylesheet" />
+    <link href="index_files/panelset/panelset.css" rel="stylesheet" />
+    <script src="index_files/panelset/panelset.js"></script>
+    <script src="index_files/clipboard/clipboard.min.js"></script>
+    <link href="index_files/shareon/shareon.min.css" rel="stylesheet" />
+    <script src="index_files/shareon/shareon.min.js"></script>
+    <link href="index_files/xaringanExtra-shareagain/shareagain.css" rel="stylesheet" />
+    <script src="index_files/xaringanExtra-shareagain/shareagain.js"></script>
+    <link href="index_files/xaringanExtra-extra-styles/xaringanExtra-extra-styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../css/my-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Module 2: Data Visualisation
+]
+.subtitle[
+## Using ggplot2
+]
+.author[
+### Fabio A. Cruz
+]
+.institute[
+### ERPI
+]
+.date[
+### February 2, 2023
+]
+
+---
+
+
+
+
+
+
+# Modules:
+
+1. .bg-yellow[[Basics of R &amp; RStudio](#module1)]
+
+1. [Data Visualisation using ggplot2](#module2)
+
+  - R as Calculator
+  - Functions
+  - Objects
+
+1. [Data Wrangling using dplyr](#module4)
+
+---
+
+
+# ggplot2 by [Hadley Wickham](http://hadley.nz/)
+&lt;br&gt;
+- "is a system for declaratively creating graphics, based on [The Grammar of Graphics](https://www.springer.com/gp/book/9780387245447)" (book by Late Leland Wilkinson)
+
+.pull-left[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="https://upload.wikimedia.org/wikipedia/en/b/b5/Leland_Wilkinson.png" alt="Late Leland Wilkinson" width="40%" /&gt;
+&lt;p class="caption"&gt;Late Leland Wilkinson&lt;/p&gt;
+&lt;/div&gt;
+]
+
+.pull-right[
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="figures/hadley.jpg" alt="Hadley Wickham" width="58%" /&gt;
+&lt;p class="caption"&gt;Hadley Wickham&lt;/p&gt;
+&lt;/div&gt;
+]
+
+.footnote[
+[Source](https://ggplot2.tidyverse.org/)
+]
+
+
+---
+
+&lt;img src="../figures/01-Introduction.001.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+&lt;img src="../figures/01-Introduction.002.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+&lt;img src="../figures/01-Introduction.003.jpeg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+class: inverse, center, middle
+background-size: 50%
+background-position: 50% 5%
+
+# .bottom.big-text[Import data]
+
+
+## https://lite.framacalc.org/ci15-3ai-data
+
+---
+
+
+## Step 1: Load the packages
+
+.pull-left[
+
+### .center[What you code]
+
+
+```r
+library(tidyverse)
+library(readxl) 
+```
+
+]
+
+.pull-right[
+
+### .center[What you see]
+
+
+]
+
+
+---
+
+## Step 2: Read data from CSV
+
+.panelset[
+
+  .panel[.panel-name[Code]
+
+
+```r
+*attrakdiff &lt;- read_csv(file = "Attrakdiff.csv")
+attrakdiff
+```
+
+]
+  .panel[.panel-name[Output]
+
+
+```r
+*attrakdiff &lt;- read_csv(file = "Attrakdiff.csv")
+attrakdiff
+```
+
+```
+## # A tibble: 5 × 34
+##   Group Software Part_ID Sex   Age   Status   QP1   QP2   QP3   QP4   QP5   QP6
+##   &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 A     Innoflow       1 Une … Entr… Etudi…     7     7     3     3     4     4
+## 2 A     Innoflow       2 Une … Entr… Etudi…     4     5     3     5     5     5
+## 3 A     Innoflow       3 Une … Entr… Etudi…     4     5     3     3     2     2
+## 4 A     Innoflow       4 Une … Entr… Salar…     7     5     6     6     5     5
+## 5 A     Innoflow       5 Une … Entr… Salar…     7     3     2     2     3     3
+## # … with 22 more variables: QP7 &lt;dbl&gt;, QHS1 &lt;dbl&gt;, QHS2 &lt;dbl&gt;, QHS3 &lt;dbl&gt;,
+## #   QHS4 &lt;dbl&gt;, QHS5 &lt;dbl&gt;, QHS6 &lt;dbl&gt;, QHS7 &lt;dbl&gt;, QHI1 &lt;dbl&gt;, QHI2 &lt;dbl&gt;,
+## #   QHI3 &lt;dbl&gt;, QHI4 &lt;dbl&gt;, QHI5 &lt;dbl&gt;, QHI6 &lt;dbl&gt;, QHI7 &lt;dbl&gt;, ATT1 &lt;dbl&gt;,
+## #   ATT2 &lt;dbl&gt;, ATT3 &lt;dbl&gt;, ATT4 &lt;dbl&gt;, ATT5 &lt;dbl&gt;, ATT6 &lt;dbl&gt;, ATT7 &lt;dbl&gt;
+```
+
+]
+]
+
+
+---
+
+# Variable types in R:
+
+
+- `int` stands for integers, like 4, 55, 300.
+
+
+- `dbl` stands for doubles, or real numbers like 3, 7.45, 1.565, 12.
+
+
+- `chr` stands for character vectors, or strings like names.
+
+
+- `dttm` stands for date-times (a date + a time).
+
+
+- `lgl` stands for logical, vectors that contain only TRUE or FALSE.
+
+
+- `fct` stands for factors, which R uses to represent **categorical variables** with fixed possible values like occupation: student, professional, government, business.
+
+
+- `date` stands for dates.
+
+
+---
+
+class: hide-count, hide-logo
+
+background-image: url("figures/layer7.png")
+background-size: contain
+background-position: 50% 50%
+
+.footnote[
+[Source](https://www.ericchowkokyew.com/data-visualization-with-ggplot2-in-r/)
+]
+
+---
+
+class: left, middle, hide-count, hide-logo
+
+background-image: url("figures/ggplot-logo.png")
+background-size: contain
+background-position: 100% 50%
+
+# .big-text[R&lt;br&gt;Package]
+
+
+---
+
+# Key Components for ggplot2 Plot
+
+1. data,
+
+1. aesthetic mapping `aes()`
+
+1. at least one layer of geom function `geom_XX()`
+
+
+**Basic structure for graphics**
+
+
+```r
+ggplot(data = &lt;DATA&gt;) + 
+  aes(x = &lt;X&gt;, y = &lt;Y&gt;) + 
+   &lt;GEOM_FUNCTION&gt;() 
+```
+
+
+---
+
+###  Step 1:  Data
+
+.panelset[
+
+.panel[.panel-name[Task]
+
+&lt;img src="figures/layer1.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Codes]
+
+
+```r
+*ggplot(data = attrakdiff)
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-7-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+---
+
+###  Step 2:  `aes`
+
+.panelset[
+
+.panel[.panel-name[Task]
+
+&lt;img src="figures/layer2.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+* aes(x = Sex)
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-8-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+---
+
+###  Step 3:  graph `geom_bar`
+
+.panelset[
+
+.panel[.panel-name[Task]
+
+&lt;img src="figures/layer3.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex) +
+* geom_bar() #&lt;&lt;
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+class: center, middle
+
+# How to export plot to your computer?
+
+---
+
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex) +
+  geom_bar()
+
+*ggsave("fig1.pdf")  # also try jpg/jpeg/png
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-10-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+
+
+
+---
+
+class: center, middle
+
+# How to add color to bars?
+
+---
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex) +
+* geom_bar(fill = 'blue')
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+---
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex) +
+* geom_bar(fill = c("orange", "yellow"))
+
+# color names should be equal to the factor levels
+# in case of factor species levels are three
+# Adele, Chinstrap &amp; Gentoo
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-12-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+---
+
+class: center, middle
+
+# How to add color using palette? 🎨
+
+---
+
+
+
+## 🎨 Color Palette
+
+- R package `RColorBrewer` &amp; `wesanderson`
+
+&lt;img src="index_files/figure-html/unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+
+---
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+library(RColorBrewer)
+
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
+  geom_bar() +
+* scale_fill_brewer(palette = "Dark2")
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-14-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+---
+
+
+class: center, middle
+
+# How to remove legend or change its position?
+
+---
+
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
+  geom_bar()+ 
+  scale_fill_brewer(palette = "Dark2") +
+* theme(legend.position = "none")
+# top, bottom, left
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+
+---
+
+class: center, middle
+
+# How to plot title and axis titles?
+
+---
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
+  geom_bar() + 
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none") +
+* labs(
+*   title = "Participants",
+*   subtitle = "per Sex and Ages",
+*   x = "Sex",
+*   y = "Quantity"
+  )
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-16-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+---
+
+
+class: center, middle
+
+# How to control size of text?
+
+---
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none",
+*       text = element_text(size = 20)) +
+  labs( 
+    title = "Participants", 
+    subtitle = "per Sex and Ages",
+*   x = "Sex",
+    y = "Quantity" 
+  )
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-17-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+
+
+---
+
+class: center, middle
+
+# How to add themes to ggplot?
+
+---
+
+# ggplot2 themes 
+
+&lt;https://ggplot2.tidyverse.org/reference/ggtheme.html&gt;
+
+- theme_gray()
+- theme_bw()
+- theme_linedraw()
+- theme_light()
+- theme_dark()
+- theme_minimal()
+- theme_classic()
+- theme_void()
+- theme_test()
+
+---
+
+
+
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none",
+        text = element_text(size = 20)) + 
+  labs( 
+    title = "Participants", 
+    subtitle = "per Sex and Ages",
+    x = "Sex", 
+    y = "Quantity" 
+  ) +
+* theme_bw()
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-18-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none",
+        text = element_text(size = 20)) + 
+  labs( 
+    title = "Participants", 
+    subtitle = "per Sex and Ages",
+    x = "Sex", 
+    y = "Quantity" 
+  ) +
+* theme_classic()
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-19-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+
+---
+
+
+class: center, middle
+
+# How to export plot to your computer?
+
+---
+
+
+.panelset[
+
+.panel[.panel-name[Codes]
+
+
+```r
+ggplot(data = attrakdiff) +
+  aes(x = Sex, fill = Age) +
+  geom_bar() +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(legend.position = "none",
+        text = element_text(size = 20)) + 
+  labs( 
+    title = "Participants", 
+    subtitle = "per Sex and Ages",
+    x = "Sex", 
+    y = "Quantity" 
+  ) +
+  theme_classic() 
+
+*ggsave("fig2.jpg", width = 5, height = 5, dpi = "print")
+```
+
+]
+
+.panel[.panel-name[Output]
+
+&lt;img src="index_files/figure-html/unnamed-chunk-20-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+# More resources
+
+- ggplot2 book https://ggplot2-book.org/
+
+- CÉDRIC SCHERER https://www.cedricscherer.com/
+
+- ggplot2 cook book http://www.cookbook-r.com/
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%/%total%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true,
+"navigation": {
+"scroll": false
+}
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
