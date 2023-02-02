@@ -4,9 +4,8 @@
     <title>Open Science for a better World</title>
     <meta charset="utf-8" />
     <meta name="author" content="Fabio CRUZ" />
-    <meta name="author" content="Giovanny Arbelaez" />
-    <meta name="author" content="Mauricio Camargo" />
-    <meta name="date" content="2023-01-23" />
+    <meta name="author" content="Alex Gabriel" />
+    <meta name="date" content="2023-02-02" />
     <script src="PPT_files/header-attrs/header-attrs.js"></script>
     <link href="PPT_files/remark-css/default.css" rel="stylesheet" />
     <link href="PPT_files/panelset/panelset.css" rel="stylesheet" />
@@ -40,16 +39,13 @@ class: center, middle, inverse, title-slide
 ### Fabio CRUZ
 ]
 .author[
-### Giovanny Arbelaez
-]
-.author[
-### Mauricio Camargo
+### Alex Gabriel
 ]
 .institute[
 ### ERPI
 ]
 .date[
-### January 23, 2023
+### February 2, 2023
 ]
 
 ---
@@ -57,23 +53,6 @@ class: center, middle, inverse, title-slide
 
 
 
-
-
-
-
-class: top, left
-background-image: url(https://raw.githubusercontent.com/fabbiocrux/Figures/main/Fabio/vosviewer/Fabio.jpg)
-background-position: right
-background-size: 70%
-
-
-# Who am I?
-
-.pull-left[
-&lt;img src="https://raw.githubusercontent.com/fabbiocrux/Figures/main/Fabio/Fabio.png" width="40%" style="display: block; margin: auto auto auto 0;" /&gt;
-]
-
----
 
 # Learning goals
 
@@ -84,25 +63,17 @@ background-size: 70%
 
 ---
 
-## Assignments for ARCHE Plateform
+class: inverse middle center
 
-A pdf document with the results  are going to be upload to the ARCHE Platform to evaluate the comprehension of the module.
+# Motivation 1: Reproducibility
 
 
 ---
 
-background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Osc2021-unesco-open-science-no-gray.png/640px-Osc2021-unesco-open-science-no-gray.png")
-background-position: 95% 50%
-background-size: 50%
-class: left middle
-
-.pull-left[
-*"Open Science refers to ongoing changes &lt;br&gt;in the way research is conducted: 
-for scientists themselves, through increasing the use of &lt;br&gt; 
-open access scientific publishing and open data, &lt;br&gt;
-and for the public, through increasing their understanding of and participation in science... &lt;br&gt;
-Open Science is one of three priority areas for European research, science and innovation policy,"- [RAND Corporation](http://aims.fao.org/activity/blog/open-science-monitor-access-data-and-trends-open-science).*
-]
+background-image: url("figures/2023-01-16-OpenScience.jpg")
+background-position: 50% 50%
+background-size: 100%
+class: left bottom
 
 ---
 
@@ -133,14 +104,14 @@ Open Science is one of three priority areas for European research, science and i
 
 ---
 
-# The paper pipeline
+## The paper pipeline
 
-&lt;img src="figures/Article-pipeline-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="figures/Article-pipeline-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-# The document pipeline
+## The document pipeline
 
 &lt;img src="figures/Article-pipeline-2.png" width="90%" style="display: block; margin: auto;" /&gt;
 
@@ -148,6 +119,8 @@ Open Science is one of three priority areas for European research, science and i
 How to describe in detail this section for Research &amp; Industry purposes
 
 ---
+
+exclude: true
 
 # Reproducibility and Replicability
 
@@ -190,6 +163,7 @@ Goodman, Steven N., Daniele Fanelli, and John P. A. Ioannidis. 2016. “What Doe
 &lt;img height="250px" class="plain" src="figures/Problem-2.png"&gt;
 
 ---
+
 background-image: url("https://figures-na.ssl-figures-amazon.com/figures/I/41KSVC8Q2JL.jpg")
 background-position: 90% 50%
 background-size: 30%
@@ -199,46 +173,52 @@ background-size: 30%
 
 Two key elements: 
 
-- **Literate programming for enabling reproducibilty**
+- .bg-yellow[**Literate programming for enabling reproducibilty**]
 - Version control for enhancing transparency
 
-*...for significantly better documentation of programs, &lt;br&gt;and that we can best achieve &lt;br&gt;this by considering programs to be works of literature.*
+*Literate programming refers to the use of a computing environment for authoring documents that contain a mix of natural (eg. English) and computer (eg. R) languages (Schulte et al. 2012)*
 
+
+.pull-left[
+
+]
+.pull-right[
+&lt;img src="figures/Word-excel.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+
+]
 
 .footnote[
 D. E. Knuth, Literate Programming, The Computer Journal, Volume 27, Issue 2, 1984, Pages 97–111, https://doi.org/10.1093/comjnl/27.2.97
 ]
 
----
-
-## Literate programming for enabling reproducibilty
-
-*Literate programming refers to the use of a computing environment for authoring documents that contain a mix of natural (eg. English) and computer (eg. R) languages (Schulte et al. 2012)*
-
-&lt;img src="figures/Word-excel.jpg" width="80%" style="display: block; margin: auto;" /&gt;
-
-
-.footnote[ Schulte, Eric, Dan Davison, Thomas Dye, and Carsten Dominik. 2012. “A Multi-Language Computing Environment for Literate Programming and Reproducible Research.” Journal of Statistical Software 46 (1): 1–24. https://doi.org/10.18637/jss.v046.i03.]
 
 ---
 
-## Literate programming for enabling reproducibilty
+## Literate programming for Reproducibilty
 
-*Literate programming refers to the use of a computing environment for authoring documents that contain a mix of natural (eg. English) and computer (eg. R) languages (Schulte et al. 2012)*
 
 &lt;img src="figures/rstudio.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-class: middle
+class: middle inverse
 
-#  What is Data Visualization?
+#  Motivation 2: Data Visualization
 
-- are graphical representations of data
-- use different colors, shapes, and the coordinate system to summarize data
-- tell a story
-- are useful for exploring data
+
+
+---
+
+## What is Data Visualization?
+
+- Graphical representations of data
+
+- Use different colors, shapes, and the coordinate system to summarize data
+
+- Tell a story
+
+- Useful for understanding
 
 
 
@@ -260,17 +240,21 @@ class: middle
 
 # Summary
 
-- Reproducible research is important as a **minimum standard**, particularly for studies that are difficult to replicate
+- Reproducible research as a **minimum standard**, particularly for studies that are difficult to replicate
+
+- Change of 
 - Infrastructure is needed for creating and distributing reproducible documents, beyond what is currently available
+
 - There is a growing number of tools for creating reproducible documents
 
-**Some challengues**
+## Some challengues
 
 - It is not the solution for everyone.
 
 
 
 ---
+
 class: middle
 
 
