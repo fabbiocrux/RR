@@ -10,7 +10,7 @@ date: "`r format(Sys.Date(), '%B %e, %Y')`"
 #output: powerpoint_presentation
 output:
   xaringan::moon_reader:
-    css: ["default", "css/my-theme.css", "css/my-fonts.css"]
+    css: ["default", "../css/my-theme.css", "../css/my-fonts.css"]
     #css: ["assets/xaringan-themer.css"]
     seal: TRUE
     nature:
@@ -95,37 +95,6 @@ background-size: contain
 
 ---
 
-# R is FREE 
-
-- R is a language and environment for statistical computing and graphics. (R project)
-- In August 1993, designed by
-
-.pull-left[
-```{r founders-r1, out.width="80%", fig.align='center', fig.cap="Ross Ihaka <br>(New Zealand Statistician)"  }
-knitr::include_graphics("https://cdn.auckland.ac.nz/aem/content/auckland/en/science/about-the-faculty/department-of-statistics/ihaka-lecture-series/_jcr_content/leftpar/imagecomponent/image.img.480.low.jpg/1561079330278.jpg")
-```
-
-]
-
-.pull-right[
-```{r founders-r2, out.width="50%",  fig.align='center', fig.cap="Robert Gentleman<br>(Canadian Statistician)"}
-knitr::include_graphics("https://www.computerhope.com/people/pictures/robert_gentleman.jpg")
-```
-
-]
-
----
-
-
-class: center
-
-# Download R from [CRAN](https://cran.r-project.org/mirrors.html)
-
-```{r cran, fig.align='center', out.width="80%"}
-knitr::include_graphics("figures/01/cran.png")
-```
-
----
 
 class: right
 
@@ -478,122 +447,6 @@ background-position: 50% 5%
 ]
 
 
----
-
----
-
-# `r emo::ji("smirk_cat")` *That's okay but you promise to...*
-
---
-
-- combine plot, text, tables and images in a single file.
-
---
-
-- publish my work online or convert into a word, pdf or html file.
-
---
-
-- work efficiently with my different projects and save, share and track them.
-
---
-
-## .orange[WE NEED A SUPERHERO ... ]
-
----
-class: center, middle, hide-count, hide-logo
-
-background-image: url("https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png")
-background-size: contain
-
----
-
-class: hide-logo
-
-background-image: url("https://res-5.cloudinary.com/crunchbase-production/image/upload/c_thumb,h_256,w_256,f_auto,g_faces,z_0.7,q_auto:eco/v1398402407/chvmdsmomg96uoz8g3ad.jpg")
-background-size: 20%
-background-position: 99% 1%
-
-# `r emo::ji("heart_eyes_cat")` About RStudio:
-
-- 2009, Joseph J. Allaire founded RStudio.
-
---
-
-- 2011, RStudio IDE for R was launched.
-
---
-
-- "RStudio is dedicated to sustainable investment in free and open-source software for data science." (16 Jan 2022)
-
-.footnote[
-[Source](https://www.rstudio.com/about/)
-]
-
----
-class: center
-
-# R $\rightleftharpoons$ RStudio
-
---
-
-.pull-left[
-## Imagine RStudio as a stylish car ...
-
-# .big-text[`r emo::ji("car")`]
-]
-
---
-
-.pull-right[
-## and R as its powerful engine.
-
-# .big-text[`r emo::ji("gear")`]
-]
-
----
-
-class: center
-
-# RStudio IDE
-
-```{r ide, out.width="75%"}
-knitr::include_graphics("images/rstd-ide.png")
-```
-
-
----
-
-class: center
-
-### RStudio $\rightarrow$ Tools $\rightarrow$ Global Options
-
-```{r settings, out.width="50%"}
-knitr::include_graphics("images/rstd-options.png")
-```
-
----
-
-class: center
-
-### RStudio $\rightarrow$ Tools $\rightarrow$ Global Options
-
-```{r settings2, out.width="50%"}
-knitr::include_graphics("images/rstd-options2.png")
-```
-
----
-
-class: center, hide-logo
-
-background-image: url("images/learn.png")
-background-size: 125%
-
-background-color: #F5F4F2
-
-.footnote[
-[Source](https://education.rstudio.com)
-]
 
 ---
 class: center middle

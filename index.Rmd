@@ -254,6 +254,100 @@ class: middle inverse
 
 ---
 
+
+# R is FREE 
+
+- R is a language and environment for statistical computing and graphics. (R project)
+- In August 1993, designed by
+
+.pull-left[
+```{r founders-r1, out.width="80%", fig.align='center', fig.cap="Ross Ihaka <br>(New Zealand Statistician)"  }
+knitr::include_graphics("https://cdn.auckland.ac.nz/aem/content/auckland/en/science/about-the-faculty/department-of-statistics/ihaka-lecture-series/_jcr_content/leftpar/imagecomponent/image.img.480.low.jpg/1561079330278.jpg")
+```
+
+]
+
+.pull-right[
+```{r founders-r2, out.width="50%",  fig.align='center', fig.cap="Robert Gentleman<br>(Canadian Statistician)"}
+knitr::include_graphics("https://www.computerhope.com/people/pictures/robert_gentleman.jpg")
+```
+
+]
+
+---
+
+class: center
+
+## Download R from [CRAN](https://cran.r-project.org/mirrors.html)
+
+```{r cran, fig.align='center', out.width="80%"}
+knitr::include_graphics("figures/cran.png")
+```
+
+
+---
+
+background-image: url("https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png")
+background-size: 90%
+
+## R Studio
+
+---
+
+background-image: url("https://res-5.cloudinary.com/crunchbase-production/image/upload/c_thumb,h_256,w_256,f_auto,g_faces,z_0.7,q_auto:eco/v1398402407/chvmdsmomg96uoz8g3ad.jpg")
+background-size: 20%
+background-position: 99% 1%
+
+## R Studio
+
+- 2009, Joseph J. Allaire founded RStudio.
+
+- 2011, RStudio IDE for R was launched.
+
+- "RStudio is dedicated to sustainable investment in free and open-source software for data science." (16 Jan 2022)
+
+```{r, out.width='50%'}
+knitr::include_graphics("https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png")
+```
+
+
+.footnote[
+[Source: https://www.rstudio.com/about/](https://www.rstudio.com/about/)
+]
+
+---
+
+class: center
+
+# R $\rightleftharpoons$ RStudio
+
+
+.pull-left[
+## Imagine RStudio as a stylish car ...
+
+# .big-text[`r emo::ji("car")`]
+]
+
+
+
+.pull-right[
+## and R as its powerful engine.
+
+# .big-text[`r emo::ji("gear")`]
+]
+
+---
+
+class: center
+
+# RStudio IDE
+
+```{r ide, out.width="75%"}
+knitr::include_graphics("figures/rstd-ide.png")
+```
+
+---
+
 class: middle
 
 ## For example
@@ -337,25 +431,34 @@ knitr::include_graphics("figures/01-Introduction.007.jpeg")
 
 ---
 
+class: inverse middle
+
+# Goal of the Day:
+
+## Make your AttrakDiff / UEQ data analysis!!
+
+
+
+---
+
 class: middle
 
-# Main goal of the workshop
+# Goal of the Day:
+## Make your AttrakDiff / UEQ data analysis!!
 
- .Large[Zero to Hero for a reproducible document ]
 
 .center[
 ##  https://rstudio.cloud/
 ]
 
 
-## :
+## So:
 
 1. Sign up 
 
 1. Make a .bg-yellow[Permanent Copy].
 
 1. Voila!, C'est bon
-
 
 
 ---
@@ -365,6 +468,21 @@ class: center, middle
 
 # Pause of 5 minutes
 
+
+---
+
+
+
+class: center, hide-logo
+
+background-image: url("figures/learn.png")
+background-size: 125%
+
+background-color: #F5F4F2
+
+.footnote[
+[Source: https://education.rstudio.com](https://education.rstudio.com)
+]
 
 
 
