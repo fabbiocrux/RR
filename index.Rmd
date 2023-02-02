@@ -285,26 +285,55 @@ class: middle
 
 ---
 
-class: middle
+class: middle inverse
+
+# Mental Model 
+## for (Applied) data science
 
 
-# Workflow in data science
+---
 
-```{r, echo=FALSE, out.width = '90%', fig.align="center"}
-knitr::include_graphics("assets/img/data-science-workflow.png")
+```{r, out.width = '100%', fig.align="center"}
+knitr::include_graphics("figures/01-Introduction.001.jpeg")
 ```
 
 ---
 
-class: middle
+```{r, out.width = '100%', fig.align="center"}
+knitr::include_graphics("figures/01-Introduction.002.jpeg")
+```
 
-# Workflow in data science, with **Tidyverse**
+---
 
-```{r, echo=FALSE, out.width = '80%', fig.align="center"}
-knitr::include_graphics("assets/img/01_tidyverse_data_science.png")
+
+```{r, out.width = '100%', fig.align="center"}
+knitr::include_graphics("figures/01-Introduction.003.jpeg")
+```
+
+---
+
+```{r, out.width = '100%', fig.align="center"}
+knitr::include_graphics("figures/01-Introduction.004.jpeg")
+```
+
+---
+
+```{r, out.width = '100%', fig.align="center"}
+knitr::include_graphics("figures/01-Introduction.005.jpeg")
+```
+
+---
+
+```{r, out.width = '100%', fig.align="center"}
+knitr::include_graphics("figures/01-Introduction.006.jpeg")
 ```
 
 
+---
+
+```{r, out.width = '100%', fig.align="center"}
+knitr::include_graphics("figures/01-Introduction.007.jpeg")
+```
 
 ---
 
@@ -315,24 +344,27 @@ class: middle
  .Large[Zero to Hero for a reproducible document ]
 
 .center[
-##  https://rstudio.cloud/project/2139211
+##  https://rstudio.cloud/
 ]
 
 
-**Recommended setup**
+## :
 
-1. Sign up for free version: https://rstudio.cloud/
+1. Sign up 
 
-2. Use you UL account!
+1. Make a .bg-yellow[Permanent Copy].
 
-3. Voila!, C'est bon
+1. Voila!, C'est bon
+
 
 
 ---
+
 
 class: center, middle
 
-# Thanks!
+# Pause of 5 minutes
 
----
+
+
 
