@@ -129,7 +129,7 @@ knitr::include_graphics("figures/Paper.png")
 
 ---
 
-## The paper pipeline
+## The document pipeline
 
 ```{r Fig_open-science, }
 knitr::include_graphics("figures/Article-pipeline-1.png")
@@ -208,29 +208,28 @@ Two key elements:
 *Literate programming refers to the use of a computing environment for authoring documents that contain a mix of natural (eg. English) and computer (eg. R) languages (Schulte et al. 2012)*
 
 
-.pull-left[
-
-]
-.pull-right[
-```{r, include=TRUE, fig.align='center', out.width='70%'}
-knitr::include_graphics("figures/Word-excel.jpg")
-```
-
-]
 
 .footnote[
 D. E. Knuth, Literate Programming, The Computer Journal, Volume 27, Issue 2, 1984, Pages 97–111, https://doi.org/10.1093/comjnl/27.2.97
 ]
 
-
 ---
 
-## Literate programming for Reproducibilty
+## Literate Programming
 
+.pull-left[
 
-```{r, include=TRUE, fig.align='center', cache=TRUE, out.width='70%'}
+```{r, include=TRUE, fig.align='center', cache=TRUE, out.width='100%'}
 knitr::include_graphics("figures/rstudio.png")
 ```
+
+]
+.pull-right[
+```{r, include=TRUE, fig.align='center', out.width='100%'}
+knitr::include_graphics("figures/Word-excel.jpg")
+```
+
+]
 
 
 ---
@@ -238,7 +237,6 @@ knitr::include_graphics("figures/rstudio.png")
 class: middle inverse
 
 #  Motivation 2: Data Visualization
-
 
 
 ---
@@ -252,7 +250,6 @@ class: middle inverse
 - Tell a story
 
 - Useful for understanding
-
 
 
 ---
