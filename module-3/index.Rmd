@@ -642,7 +642,7 @@ attrakdiff %>%
 
 ---
 
-# `mutate()` function: Adds new variables that are functions of existing variables
+# `mutate()` : Adds new variables that are functions of existing variables
 
 ```{r mutate-img, echo=FALSE, fig.align='center', out.width="75%"}
 knitr::include_graphics("figures/04-mutate.png")
@@ -806,13 +806,6 @@ attrakdiff %>%
 ---
 
 
----
-
-class: center, middle, inverse
-
-# `summarise()` function
-
----
 
 ## `summarise()` function: Chooses rows based on column values.
 
@@ -824,7 +817,7 @@ knitr::include_graphics("figures/05-summarise.png")
 
 class: center, middle
 
-# How to find mean `Note_1` of all participants?
+# How to find mean of `Note_1` for all participants?
 
 ---
 
@@ -851,7 +844,7 @@ attrakdiff %>%
 
 class: center, middle
 
-# How to find mean `Note_1` of all participants?
+## How to find the mean `Note_1` per each `Sex`?
 
 ---
 
@@ -879,7 +872,7 @@ attrakdiff %>%
 
 class: center, middle
 
-# How to find species-wise mean bill length of penguins and total number of penguins in each species?
+## How to find the mean `Note_1` per each `Sex` and the number of participants?
 
 ---
 
