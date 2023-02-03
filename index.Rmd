@@ -80,7 +80,7 @@ xaringanExtra::use_share_again()
 
 ---
 
-class: inverse middle center
+class: middle center
 
 # Motivation 1: Reproducibility
 
@@ -234,7 +234,7 @@ knitr::include_graphics("figures/Word-excel.jpg")
 
 ---
 
-class: middle inverse
+class: middle 
 
 #  Motivation 2: Data Visualization
 
@@ -379,7 +379,7 @@ class: middle
 
 ---
 
-class: middle inverse
+class: middle 
 
 # Mental Model 
 ## for (Applied) data science
@@ -431,7 +431,7 @@ knitr::include_graphics("figures/01-Introduction.007.jpeg")
 
 ---
 
-class: inverse middle
+class:  middle
 
 # Goal of the Day:
 
@@ -448,7 +448,7 @@ class: middle
 
 
 .center[
-##  https://rstudio.cloud/
+##  https://posit.cloud/content/5349937
 ]
 
 

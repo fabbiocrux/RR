@@ -129,7 +129,6 @@ background-position: 50% 5%
 # .bottom.big-text[Import data]
 
 
-## https://lite.framacalc.org/ci15-3ai-data
 
 ---
 
@@ -758,46 +757,6 @@ ggsave("fig2.jpg", width = 5, height = 5, dpi = "print")  #<<
 ---
 
 
-class: center, middle
-
-# Graph 2: `geom_histogram()`
-
----
-
-
-.panelset[
-
-.panel[.panel-name[Codes]
-
-```{r geom_histogram, eval=FALSE, echo=TRUE}
-ggplot(data = attrakdiff) +
-  aes(x = Sex, fill = Age) +
-  geom_bar() +
-  scale_fill_brewer(palette = "Dark2") +
-  theme(legend.position = "none",
-        text = element_text(size = 20)) + 
-  labs( 
-    title = "Participants", 
-    subtitle = "per Sex and Ages",
-    x = "Sex", 
-    y = "Quantity" 
-  ) +
-  theme_classic() 
-
-ggsave("fig2.jpg", width = 5, height = 5, dpi = "print")  #<<
-```
-
-]
-
-.panel[.panel-name[Output]
-
-```{r ref.label="export-plot2", echo=FALSE}
-
-```
-
-]
-]
-
 
 ---
 
@@ -809,4 +768,5 @@ ggsave("fig2.jpg", width = 5, height = 5, dpi = "print")  #<<
 
 - ggplot2 cook book http://www.cookbook-r.com/
 
+- https://r-graph-gallery.com/
 
