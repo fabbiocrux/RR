@@ -1,0 +1,6 @@
+Group,Software,Part_ID,Sex,Age,Status,EFF1,EFF2,EFF3,EFF4,PERS1,PERS2,PERS3,PERS4,DEP1,DEP2,DEP3,DEP4,STIM1,STIM2,STIM3,STIM4,NOV1,NOV2,NOV3,NOV4,ATT1,ATT2,ATT3,ATT4,ATT5,ATT6
+Test,Innoflow,1,Une femme,Entre 18-25 ans,Etudiant,7,7,3,3,4,4,2,2,3,3,2,3,1,3,4,3,3,3,5,3,4,3,3,3,5,3
+Test,Innoflow,2,Une femme,Entre 26-35 ans,Etudiant,4,5,3,5,5,5,5,2,5,3,5,5,4,4,5,5,5,3,5,3,5,3,5,3,5,3
+Test,Innoflow,3,Un homme,Entre 26-35 ans,Etudiant,4,5,3,3,2,2,3,4,3,5,5,5,4,5,2,5,4,4,5,4,4,3,3,4,4,3
+Test,Innoflow,4,Une femme,Entre 26-35 ans,Salarie,7,5,6,6,5,5,6,6,5,6,5,6,4,5,4,6,5,4,6,6,5,4,5,5,4,5
+Test,Innoflow,5,Un homme,Entre 18-25 ans,Salarie,7,3,2,2,3,3,6,4,3,4,5,5,2,4,4,6,3,2,3,2,3,4,3,2,5,2
