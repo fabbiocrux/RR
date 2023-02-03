@@ -560,3 +560,8 @@ pre {
 .hide-count .remark-slide-number {
   display: none;
 }
+
+
+.remark-slide-scaler {
+    overflow-y: auto;
+}

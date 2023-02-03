@@ -186,7 +186,6 @@ library(kableExtra)
 ---
 
 
----
 
 ## Step 2: Read data from CSV
 
