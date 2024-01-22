@@ -307,7 +307,7 @@ background-position: 99% 1%
 - "RStudio is dedicated to sustainable investment in free and open-source software for data science." (16 Jan 2022)
 
 ```{r, out.width='50%'}
-knitr::include_graphics("https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png")
+knitr::include_graphics("figures/RStudio-Logo-Flat.png")
 ```
 
 
@@ -448,7 +448,8 @@ class: middle
 
 
 .center[
-##  https://posit.cloud/content/5349937
+##  https://posit.cloud/content/5351714
+
 ]
 
 
